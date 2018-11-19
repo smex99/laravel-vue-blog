@@ -8,7 +8,7 @@
     <div class="container">
         {{-- <div class="row justify-content-center"> --}}
             <div class="row">
-                <img src="{{ asset('storage/articles.png')}}" class="rounded mx-auto d-block" alt="...">
+                <img src="{{ asset('storage/formation-2.jpg')}}" style="height:400px; width:auto" class="rounded mx-auto d-block" alt="...">
             </div>
 
             <div class="row justify-content-center py-2">

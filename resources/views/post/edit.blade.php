@@ -2,13 +2,16 @@
 
 @section('title', '| Edition article')
 
-@section('subtitle', 'Article édition')
+@section('subtitle', 'Edition acticle')
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="my-3 p-3 bg-white rounded shadow">
+                    
+                    @include ('layouts.errors')
+
                     <form class="" action="/post/{{ $post->id }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -42,7 +45,7 @@
 
                         <div class="form-group">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" value="{{$post->live}}" class="custom-control-input" name="live" id="live">
+                                <input type="checkbox" {{ $post->live ? 'checked' : '' }} class="custom-control-input" name="live" id="live">
                                 <label class="custom-control-label" for="live">Voulez-vous publier cet article ?</label>
                             </div>
                         </div>

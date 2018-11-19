@@ -41,8 +41,8 @@ class ProfileController extends Controller
         $this->validate($request, [
             'phone' => 'required',
             'address' => 'required',
-            'city' => 'required',
-            'country' => 'required',
+            'city' => 'required|max:15',
+            'country' => 'required|max:10',
             'postal_code' => 'required',
             'image' => 'required|image',
         ]);
@@ -78,6 +78,9 @@ class ProfileController extends Controller
     public function show($id)
     {
         $profile = profile::find($id);
+
+        $this->authorize('view', $profile);
+
         if ($profile == null) {
             return view('profile.create');
         } else {
@@ -94,6 +97,9 @@ class ProfileController extends Controller
     public function edit($id)
     {
         $profile = Profile::findorFail($id);
+
+        $this->authorize('update', $profile);
+
         return view('profile.edit', compact('profile'));
     }
 

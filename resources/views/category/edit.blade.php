@@ -8,9 +8,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
+            
+            @include ('layouts.errors')
+            
             <form action="/category/{{ $category->id }}" method="POST">
                 @csrf
-                @method('PUT')
+                @method ('PUT')
 
                 <div class="form-group">
                     <label for="name">Nom de la catégorie:</label>

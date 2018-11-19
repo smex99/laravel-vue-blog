@@ -10,6 +10,12 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user, $ability) {
+        if ($user->hasRole('admin')) {
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can view the post.
      *
@@ -17,9 +23,9 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function view(User $user, Post $post)
+    public function view(User $user, Post $post = null)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +36,7 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->hasRole('author') && $user->id === $post->user_id;
     }
 
     /**
@@ -42,7 +48,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        //
+        return $user->id === $post->user_id;
     }
 
     /**
@@ -54,7 +60,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        //
+        return $user->hasRole('author') && $user->id === $post->user_id;
     }
 
     /**

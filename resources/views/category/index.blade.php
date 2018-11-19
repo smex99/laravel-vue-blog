@@ -10,7 +10,7 @@
         <div class="col-md-10">
             <div class="row">
                 <div class="col-md-5">
-                <div class="my-3 p-3 bg-white rounded shadow-sm">
+                <div class="my-3 p-3 bg-white rounded shadow">
                     <table class="table table-hover">
                         <thead>
                             <tr>

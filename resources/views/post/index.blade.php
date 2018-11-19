@@ -2,12 +2,12 @@
 
 @section('title', '| Post index')
 
-@section('subtitle', 'Liste des articles')
+@section('subtitle', 'Mes articles')
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="my-3 p-3 bg-white rounded shadow">
                     <table class="table table-hover">
                         <thead>
@@ -53,7 +53,7 @@
                                     </td>
                                 </tr>
                             @empty
-                                Pas d'article(s)
+                                Vous n'avez d'article(s)
                             @endforelse
                         </tbody>
                     </table>

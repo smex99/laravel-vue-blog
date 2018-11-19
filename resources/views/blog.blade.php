@@ -7,7 +7,7 @@
         <div class="container">
             <div style="margin-top: 100px;"></div>
             <h1 class="text-white">Nos articles</h1>
-            <p class="lead text-white">Nous mettons à jours régulièrement sur notre site des articles liées aux technologies du développement Front-end et Back-end...</p>
+            <p class="text-white">Nous mettons à jours régulièrement sur notre site des articles liées aux technologies du développement Front-end et Back-end...</p>
         </div>
     </section>
 

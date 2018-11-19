@@ -20,7 +20,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(9);
+        $this->authorize('view', Post::class);
+
+        $posts = Post::where('user_id', Auth::user()->id)->get();
         return view('post.index', compact('posts'));
 
     }
@@ -32,6 +34,8 @@ class PostController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Post::class);
+
         return view('post.create')
             ->with('categories', Category::all());
     }
@@ -46,7 +50,7 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|max:120',
-            'content' => 'required|max:5000',
+            'content' => 'required|max:1500',
             'live' => 'required',
             'image' => 'required|image',
         ]);
@@ -99,6 +103,9 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findorFail($id);
+        
+        $this->authorize('update', $post);
+
         return view('post.edit', compact('post'))
             ->with('categories', Category::all());
     }
@@ -112,6 +119,13 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'title' => 'required|max:120',
+            'content' => 'required|max:1500',
+            'live' => 'required',
+            'image' => 'required|image',
+        ]);
+
         try {
             $filename = time().'.'.$request->image->extension();
             $path = $request->image->storeAs('public', $filename);
@@ -141,8 +155,13 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
+
+        $this->authorize('delete', $post);
+
         Storage::deleteDirectory($post->image);
-        $post->delete();
+
+        $post->delete(); 
+
         return redirect('/post');
     }
 

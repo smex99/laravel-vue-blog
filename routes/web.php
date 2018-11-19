@@ -11,7 +11,7 @@ Route::view('/post/board', 'post.board');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::post('/assign', 'RoleController@assignRoles')->name('assign');
+    Route::post('/assign', 'RoleController@assign')->name('assign');
 
     Route::resource('profile', 'ProfileController');
     Route::resource('role', 'RoleController');
@@ -23,5 +23,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::view('/stats', 'stats.index');
 });
 
-// Algolia routes for searching Post model
-Route::get('/search', 'PostController@search')->name('search');
+Route::get('/search/', 'PostController@search')->name('search');

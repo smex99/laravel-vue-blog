@@ -25,21 +25,28 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
     */
-    public function assignRoles(Request $request)
+    public function assign(Request $request)
     {
-        $user = User::where('email', $request['email'])->first();
-        $user->roles()->detach();
+        try {
+            $user = User::where('email', $request->email)->first();
+            $user->roles()->detach();
+    
+            if ($request->role_user) {
+                $user->roles()->attach(Role::where('name', 'User')->first());
+            }
+            if ($request->role_author) {
+                $user->roles()->attach(Role::where('name', 'Author')->first());
+            }
+            if ($request->role_admin) {
+                $user->roles()->attach(Role::where('name', 'Admin')->first());
+            }
 
-        if ($request['role_user']) {
-            $user->roles()->attach(Role::where('name', 'User')->first());
+            $message = 'Rôle utilisateur Modifié';
         }
-        if ($request['role_author']) {
-            $user->roles()->attach(Role::where('name', 'Author')->first());
+        catch (Exception $e) {
+            $message = 'Modification rôle echec';
         }
-        if ($request['role_admin']) {
-            $user->roles()->attach(Role::where('name', 'Admin')->first());
-        }
-        return redirect()->back();
+        return redirect()->back()->with(['message'=> $message]);
     }
 
     /**

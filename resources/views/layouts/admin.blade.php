@@ -14,7 +14,7 @@
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
+        
         <!-- Styles -->
         <link href="{{ mix ('css/app.css') }}" rel="stylesheet">
         <link href="{{ mix ('css/style.css') }}" rel="stylesheet">
@@ -30,7 +30,7 @@
                     </a>
 
                     <div class="col">
-                        <form action="/search/" method="GET" id="search" role="search">
+                        <form action="{{ route('search') }}" method="GET" id="search" role="search">
                             <input class="form-control" name="search" value="" type="search" placeholder="Recherche">
                         </form>
                     </div>
@@ -150,7 +150,12 @@
             
                     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                            <h1 class="h2">@yield('subtitle')</h1>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="/home">Tableau de bord</a></li>
+                                    <li class="breadcrumb-item" aria-current="page">@yield('subtitle')</li>
+                                </ol>
+                            </nav>
                         </div>
 
                         <div class="row">

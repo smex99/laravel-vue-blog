@@ -9,6 +9,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="my-3 p-3 bg-white rounded shadow">
+                    
+                    @include ('layouts.errors')
+
                     <form class="" action="/post" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">

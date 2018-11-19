@@ -32,7 +32,7 @@
 
                     <!-- Posts search form based on algolia -->
                     <div class="col">
-                        <form action="/search/" method="GET" id="search" role="search">
+                        <form action="{{ route('search') }}" method="GET" id="search" role="search">
                             <input class="form-control" name="search" value="" type="search" placeholder="Recherche">
                         </form>
                     </div>

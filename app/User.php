@@ -60,6 +60,12 @@ class User extends Authenticatable
         return false;
     }
 
+    // Checking if the user has a profile registred
+    public function hasProfile()
+    {
+        //
+    }
+
     /**
      * User model relations
      *
